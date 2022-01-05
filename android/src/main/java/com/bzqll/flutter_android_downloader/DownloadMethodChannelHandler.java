@@ -37,7 +37,7 @@ public class DownloadMethodChannelHandler implements MethodChannel.MethodCallHan
                 break;
             case "getPermission":
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
                         String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
                         requestPermissions(permissions, PERMISSION_CODE);
                     }
@@ -52,7 +52,7 @@ public class DownloadMethodChannelHandler implements MethodChannel.MethodCallHan
                 Map<String,String> headers = call.argument("headers");
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
                         String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
                         requestPermissions(permissions, PERMISSION_CODE);
                     } else {
